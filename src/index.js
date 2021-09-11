@@ -44,8 +44,8 @@ class OTPField extends Component {
   handleChangeText = (val) => {
     const { onChange } = this.props;
 
+    this.setState({ internalVal: val });
     onChange(val);
-    this.setState({ internalVal: val })
   };
 
   // public methods
@@ -96,7 +96,9 @@ class OTPField extends Component {
           keyboardType="numeric"
           {...otherProps}
         />
-        <View style={[styles.container, containerStyle]}>
+        <View style={{
+          ...styles.container, ...containerStyle, borderColor: internalVal.length >= 0 && index === (internalVal.length - 1) ? tintColor : offTintColor
+        }}>
           {Array(otpLength)
             .fill()
             .map((_, index) => (
@@ -105,10 +107,6 @@ class OTPField extends Component {
                 style={[
                   styles.cell,
                   cellStyle,
-                  {
-                    borderColor:
-                      internalVal.length >= 0 && index === internalVal.length ? tintColor : offTintColor
-                  }
                 ]}
                 onPress={() => this.textInput.focus()}
               >
@@ -125,17 +123,18 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: 50,
+    height: 50,
+    borderWidth: 2,
+    borderRadius: 10,
+    margin: 5,
+    flex: 1
   },
   cell: {
-    width: 80,
-    height: 90,
-    margin: 3,
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 20,
     color: '#000',
-    borderWidth: 2,
-    borderRadius: 5,
   }
 });
 
