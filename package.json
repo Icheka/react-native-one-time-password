@@ -1,0 +1,32 @@
+{
+  "name": "react-native-one-time-password",
+  "version": "0.0.1",
+  "description": "Secure PIN/one-time password (OTP) input field component for React Native/Expo Go apps.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Icheka/react-native-one-time-password.git"
+  },
+  "keywords": [
+    "react-native",
+    "otp",
+    "one-time password",
+    "secure-pin",
+    "react-native-otp",
+    "pin-code"
+  ],
+  "author": "Icheka Ozuru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Icheka/react-native-one-time-password/issues"
+  },
+  "homepage": "https://github.com/Icheka/react-native-one-time-password#readme",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  }
+}
