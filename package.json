@@ -1,6 +1,6 @@
 {
   "name": "react-native-one-time-password",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Secure PIN/one-time password (OTP) input field component for React Native/Expo Go apps.",
   "main": "src/index.js",
   "types": "src/index.d.ts",

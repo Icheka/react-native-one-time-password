@@ -31,7 +31,7 @@ class OTPField extends Component {
     internalVal: this.props.value || this.props.defaultValue
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(nextProps) {
     if (nextProps.hasOwnProperty('value') && nextProps.value !== this.state.internalVal) {
       this.setState({ internalVal: nextProps.value });
     }
@@ -128,13 +128,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   cell: {
-    paddingVertical: 11,
-    width: 40,
-    margin: 5,
+    width: 60,
+    height: 70,
+    margin: 3,
     textAlign: 'center',
     fontSize: 18,
     color: '#000',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderRadius: 10,
   }
 });
