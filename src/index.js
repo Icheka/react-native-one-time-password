@@ -13,16 +13,21 @@ class OTPField extends Component {
     containerStyle: PropTypes.object,
     cellStyle: PropTypes.object,
     defaultValue: PropTypes.string,
-    editable: PropTypes.bool
+    editable: PropTypes.bool,
+    textStyle: PropTypes.object,
+    cellWidth: PropTypes.number,
+    cellHeight: PropTypes.number,
   }
 
   static defaultProps = {
     onChange: () => null,
     otpLength: 4,
     tintColor: '#11bd04',
-    offTintColor: '#313133',
+    offTintColor: '#8a8a8a',
     containerStyle: {},
-    cellStyle: {}
+    cellStyle: {},
+    cellHeight: 60,
+    cellWidth: 60
   };
 
   textInput = null;
@@ -31,7 +36,7 @@ class OTPField extends Component {
     internalVal: this.props.value || this.props.defaultValue || ''
   }
 
-  componentDidUpdate(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('value') && nextProps.value !== this.state.internalVal) {
       this.setState({ internalVal: nextProps.value });
     }
@@ -78,6 +83,9 @@ class OTPField extends Component {
       tintColor,
       offTintColor,
       otpLength,
+      textStyle,
+      cellWidth,
+      cellHeight,
       ...otherProps
     } = this.props;
 
@@ -86,9 +94,10 @@ class OTPField extends Component {
     return (
       <View>
         <TextInput
+          caretHidden
           ref={input => (this.textInput = input)}
           onChangeText={this.handleChangeText}
-          style={{ width: 0, height: 0 }}
+          style={{ width: ((cellWidth ?? 60) * otpLength) + 40, height: ((cellHeight ?? 60) + 5), padding: 5, ...styles.textInput }}
           value={internalVal}
           minLength={otpLength}
           maxLength={otpLength}
@@ -97,21 +106,26 @@ class OTPField extends Component {
           {...otherProps}
         />
         <View style={{
-          ...styles.container, ...containerStyle, borderColor: internalVal.length >= 0 && index === (internalVal.length - 1) ? tintColor : offTintColor
+          ...styles.container, ...containerStyle,
         }}>
           {Array(otpLength)
             .fill()
             .map((_, index) => (
-              <Text
+              <View
                 key={index}
-                style={[
-                  styles.cell,
-                  cellStyle,
-                ]}
+                style={{
+                  ...styles.cell,
+                  ...cellStyle,
+                  height: cellHeight ?? 60,
+                  width: cellWidth ?? 60,
+                  borderColor: internalVal.length >= 0 && index === internalVal.length ? tintColor : offTintColor
+                }}
                 onPress={() => this.textInput.focus()}
               >
-                {internalVal && internalVal.length > index ? internalVal[index] : " "}
-              </Text>
+                <Text style={{ ...styles.textStyle, ...textStyle, }}>
+                  {internalVal && internalVal.length > index ? internalVal[index] : " "}
+                </Text>
+              </View>
             ))}
         </View>
       </View>
@@ -124,19 +138,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 2,
-    borderRadius: 10,
-    margin: 5,
-    flex: 1
   },
   cell: {
     textAlign: 'center',
     fontSize: 20,
-    color: '#000',
-    width: 50,
-    height: 50,
+    margin: 5,
+    borderWidth: 2,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: `white`,
+  },
+  textStyle: {
+    color: `#313133`,
+    fontSize: 20
+  },
+  textInput: {
+    position: `absolute`,
+    zIndex: 10,
+    color: 'transparent',
   }
 });
 
 export default OTPField;
-
