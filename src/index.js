@@ -28,7 +28,7 @@ class OTPField extends Component {
   textInput = null;
 
   state = {
-    internalVal: this.props.value || this.props.defaultValue
+    internalVal: this.props.value || this.props.defaultValue || ''
   }
 
   componentDidUpdate(nextProps) {
@@ -128,14 +128,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   cell: {
-    width: 60,
-    height: 70,
+    width: 80,
+    height: 90,
     margin: 3,
     textAlign: 'center',
     fontSize: 18,
     color: '#000',
-    borderWidth: 1.5,
-    borderRadius: 10,
+    borderWidth: 2,
+    borderRadius: 5,
   }
 });
 
