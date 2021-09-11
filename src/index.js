@@ -124,8 +124,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 50,
-    height: 50,
     borderWidth: 2,
     borderRadius: 10,
     margin: 5,
@@ -135,6 +133,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     color: '#000',
+    width: 50,
+    height: 50,
   }
 });
 

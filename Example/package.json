@@ -12,7 +12,7 @@
     "expo": "^42.0.0",
     "react": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-one-time-password": "0.0.4",
+    "react-native-one-time-password": "0.0.5",
     "react-native-otp": "*"
   },
   "devDependencies": {
